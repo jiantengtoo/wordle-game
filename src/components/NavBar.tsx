@@ -1,5 +1,5 @@
-import { Flex, IconButton, Text, Tooltip, useToast } from "@chakra-ui/react";
 import { ArrowRightIcon, InfoIcon, RepeatIcon } from "@chakra-ui/icons";
+import { Flex, IconButton, Text, Tooltip, useToast } from "@chakra-ui/react";
 import { useAppContext } from "../store/useAppContext";
 
 export const NavBar = (): JSX.Element => {

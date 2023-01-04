@@ -3,8 +3,6 @@ import { EmptyBox } from "./EmptyBox";
 import { Flex } from "@chakra-ui/react";
 import { useAppContext } from "../store/useAppContext";
 import { NUMBER_OF_LETTERS } from "../constants";
-import { useMemo } from "react";
-import { checkWord } from "../game/helper";
 
 type GameRowProps = {
   rowNumber: number;

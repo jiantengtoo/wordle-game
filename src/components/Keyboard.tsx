@@ -1,5 +1,4 @@
 import { Button, Flex, Box, Center, useToast } from "@chakra-ui/react";
-import { useCallback } from "react";
 import { KEYBOARD_LAYOUT, NUMBER_OF_LETTERS } from "../constants";
 import { useAppContext } from "../store/useAppContext";
 
