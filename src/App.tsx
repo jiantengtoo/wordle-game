@@ -8,7 +8,7 @@ import { Box, useToast } from "@chakra-ui/react";
 import { StatsModal } from "./components/StatsModal";
 
 function App() {
-  const { state } = useAppContext();
+  const { state, disclosure } = useAppContext();
 
   const toast = useToast();
 
@@ -20,6 +20,7 @@ function App() {
         isClosable: true,
         position: "top",
       });
+      disclosure?.onOpen();
     } else if (state.gameState === "lose") {
       toast({
         title: "Lose",
