@@ -12,18 +12,19 @@ export const NavBar = (): JSX.Element => {
       flexDirection={"row"}
       alignItems={"center"}
       borderBottom={"1px solid #d3d6da"}
-      height={"50px"}
+      height={"60px"}
       justifyContent={"space-between"}
+      padding={10}
     >
-      <Flex>
-        <Text
-          onDoubleClick={() => {
-            toast({ title: state.answer, isClosable: true });
-          }}
-        >
-          Wordle
-        </Text>
-      </Flex>
+      <Text
+        fontSize={"lg"}
+        as={"b"}
+        onDoubleClick={() => {
+          toast({ title: state.answer, isClosable: true });
+        }}
+      >
+        Wordle
+      </Text>
       <Flex gap={1}>
         <Tooltip label="Reset">
           <IconButton

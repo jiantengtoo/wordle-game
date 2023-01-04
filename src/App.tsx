@@ -4,7 +4,7 @@ import { GameRow } from "./components/GameRow";
 import { Keyboard } from "./components/Keyboard";
 import { NUMBER_OF_TRIES } from "./constants";
 import { useEffect } from "react";
-import { useToast } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 import { StatsModal } from "./components/StatsModal";
 
 function App() {
@@ -38,7 +38,9 @@ function App() {
       {Array.from({ length: NUMBER_OF_TRIES }).map((_, index) => (
         <GameRow rowNumber={+index + 1} key={`number-of-tries-${index}`} />
       ))}
-      <Keyboard />
+      <Box paddingTop={10}>
+        <Keyboard />
+      </Box>
     </>
   );
 }
