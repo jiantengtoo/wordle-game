@@ -56,7 +56,10 @@ export const StatsModal = (): JSX.Element => {
                 btmText={"Played"}
               />
               <StatBox
-                topText={((stats.wins / (stats.wins + stats.loses)) * 100)
+                topText={(stats.wins === 0
+                  ? 0
+                  : (stats.wins / (stats.wins + stats.loses)) * 100
+                )
                   .toFixed()
                   .toString()}
                 btmText={"Win %"}
