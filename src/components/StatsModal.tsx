@@ -76,6 +76,9 @@ export const StatsModal = (): JSX.Element => {
             <Center>
               <Text>Guess Distribution</Text>
             </Center>
+            {Object.entries(stats.guessDistribution).map((guess) => (
+              <Center>{`${guess[0]}: ${guess[1]}`}</Center>
+            ))}
           </ModalBody>
         </ModalContent>
       </Modal>
