@@ -7,6 +7,45 @@ import {
 } from "../constants";
 import { useAppContext } from "../store/useAppContext";
 
+const BG_MAP = {
+  correct: "#6aaa64",
+  wrong: "#c9b458",
+  not: "#787c7e",
+  beforeEnter: "#d3d6da",
+} as const;
+
+const COLOR_MAP = {
+  correct: "#ffffff",
+  wrong: "#ffffff",
+  not: "#ffffff",
+  beforeEnter: "#000000",
+} as const;
+
+const Key = ({
+  char,
+  onClick,
+  variant,
+}: {
+  char: string;
+  onClick: (char: string) => void;
+  variant: "correct" | "wrong" | "not" | "beforeEnter";
+}) => {
+  return (
+    <Center
+      minW={"10"}
+      minH={"14"}
+      p={"2"}
+      bg={BG_MAP[variant]}
+      color={COLOR_MAP[variant]}
+      borderRadius={"8"}
+      onClick={() => onClick(char)}
+      key={`keyboard-key-${char}`}
+    >
+      {char.toUpperCase()}
+    </Center>
+  );
+};
+
 export const Keyboard = (): JSX.Element => {
   const { state, dispatch } = useAppContext();
 
@@ -57,18 +96,17 @@ export const Keyboard = (): JSX.Element => {
       {KEYBOARD_LAYOUT.map((row, index) => (
         <Center paddingTop={3} key={`keyboard-row-${index}`}>
           <Flex gap={2}>
-            {row.map((char) => (
-              <Center
-                minW={"10"}
-                minH={"10"}
-                p={"2"}
-                border={"1px solid black"}
-                onClick={() => onClick(char)}
-                key={`keyboard-key-${char}`}
-              >
-                {char.toUpperCase()}
-              </Center>
-            ))}
+            {row.map((char) => {
+              const variant = state.keys.correct.includes(char)
+                ? "correct"
+                : state.keys.wrong.includes(char)
+                ? "wrong"
+                : state.keys.not.includes(char)
+                ? "not"
+                : "beforeEnter";
+
+              return <Key char={char} onClick={onClick} variant={variant} />;
+            })}
           </Flex>
         </Center>
       ))}

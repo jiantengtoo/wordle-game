@@ -13,6 +13,11 @@ export type AppStateType = {
   >;
   attemptNumber: number;
   gameState: "guessing" | "won" | "lose";
+  keys: {
+    correct: string[];
+    wrong: string[];
+    not: string[];
+  };
 };
 
 type AttemptAnswerType = AppStateType["attemptAnswer"];
@@ -33,6 +38,11 @@ export const initialState: AppStateType = {
   ),
   attemptNumber: 1,
   gameState: "guessing",
+  keys: {
+    correct: [] as string[],
+    wrong: [] as string[],
+    not: [] as string[],
+  },
 } as const;
 
 export type AppActions =
@@ -95,7 +105,12 @@ export const appReducer = (
       )
         return state;
 
-      const checkWordArr = checkWord(
+      const {
+        result: checkWordArr,
+        correctKeys,
+        wrongKeys,
+        notKeys,
+      } = checkWord(
         state.attemptAnswer[state.attemptNumber].guess,
         state.answer
       );
@@ -113,6 +128,10 @@ export const appReducer = (
             },
           },
           gameState: "won",
+          keys: {
+            ...state.keys,
+            correct: [...state.keys.correct, ...correctKeys],
+          },
         };
       }
 
@@ -131,6 +150,11 @@ export const appReducer = (
             },
           },
           gameState: "lose",
+          keys: {
+            correct: [...state.keys.correct, ...correctKeys],
+            wrong: [...state.keys.wrong, ...wrongKeys],
+            not: [...state.keys.not, ...notKeys],
+          },
         };
       }
 
@@ -143,6 +167,11 @@ export const appReducer = (
             ...state.attemptAnswer[state.attemptNumber],
             check: checkWordArr,
           },
+        },
+        keys: {
+          correct: [...state.keys.correct, ...correctKeys],
+          wrong: [...state.keys.wrong, ...wrongKeys],
+          not: [...state.keys.not, ...notKeys],
         },
       };
     }
