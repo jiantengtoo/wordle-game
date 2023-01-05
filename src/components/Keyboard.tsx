@@ -39,7 +39,6 @@ const Key = ({
       color={COLOR_MAP[variant]}
       borderRadius={"8"}
       onClick={() => onClick(char)}
-      key={`keyboard-key-${char}`}
     >
       {char.toUpperCase()}
     </Center>
@@ -105,7 +104,14 @@ export const Keyboard = (): JSX.Element => {
                 ? "not"
                 : "beforeEnter";
 
-              return <Key char={char} onClick={onClick} variant={variant} />;
+              return (
+                <Key
+                  char={char}
+                  onClick={onClick}
+                  variant={variant}
+                  key={`keys-${char}`}
+                />
+              );
             })}
           </Flex>
         </Center>
