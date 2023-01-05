@@ -70,7 +70,7 @@ export const StatsModal = (): JSX.Element => {
               />
               <StatBox
                 topText={stats.maxStreak.toString()}
-                btmText={"Current Streak"}
+                btmText={"Max Streak"}
               />
             </Center>
             <Center>
