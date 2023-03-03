@@ -8,3 +8,9 @@
 1. git clone project
 2. `npm install`
 3. `npm run dev`
+
+### Tech used
+- typescript
+- vite
+- react
+- chakraUI
